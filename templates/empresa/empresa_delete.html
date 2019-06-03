@@ -1,0 +1,12 @@
+<!--Heredamos de la plantilla base -->
+{% extends 'base/baseadmin.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <!--TOKEN DE seguridad IMPORTANTE SIEMPRE incluirlo-->
+    <h3>Desea eliminar el registro de {{ object.razon_social }}</h3>
+    <button class="btn btn-danger" type="submit">Si, eliminar</button>
+    <a class="btn btn-default" href="{% url 'empresa:listar_empresa' %}">Cancelar</a>
+</form>
+{% endblock %}

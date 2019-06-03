@@ -1,0 +1,42 @@
+<!--Heredamos de la plantilla base -->
+{% extends 'base/baseadmin.html' %}
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Numero apartamento</td>
+            <td>Temporalidad inicio</td>
+            <td>Temporalidad fin</td>
+            <td>Torre</td>
+            <td>Propietario</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        <!--Si hay apartamentos-->
+        {% for apartamento in object_list %}
+        <!--Relice un ciclo que genere una fila por cada registro-->
+        <tr>
+            <td>{{ apartamento.id }}</td>
+            <td>{{ apartamento.numero_apartamento }}</td>
+            <td>{{ apartamento.fecha_inicio }}</td>
+            <td>{{ apartamento.fecha_fin }}</td>
+            <td>{{ apartamento.torre }}</td>
+            <td>{{ apartamento.propietario }}</td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'apartamento:editar_apartamento' apartamento.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'apartamento:eliminar_apartamento' apartamento.id %}">Eliminar</a>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registro de apartamentos</h1>
+        {% endif %}
+    </tbody>
+
+</table>
+
+{% endblock %}

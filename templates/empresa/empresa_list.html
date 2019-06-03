@@ -1,0 +1,48 @@
+<!--Heredamos de la plantilla base -->
+{% extends 'base/baseadmin.html' %}
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>NIT</td>
+            <td>Razon social</td>
+            <td>Direccion</td>
+            <td>Telefono</td>
+            <td>Celular</td>
+            <td>Estado</td>
+            <td>Temp inicio</td>
+            <td>Temp fin</td>
+            <td>Conjunto</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        <!--Si hay empresas-->
+        {% for empresa in object_list %}
+        <!--Relice un ciclo que genere una fila por cada registro-->
+        <tr>
+            <td>{{ empresa.NIT }}</td>
+            <td>{{ empresa.razon_social }}</td>
+            <td>{{ empresa.direccion }}</td>
+            <td>{{ empresa.telefono }}</td>
+            <td>{{ empresa.celular }}</td>
+            <td>{{ empresa.estado }}</td>
+            <td>{{ empresa.fecha_inicio }}</td>
+            <td>{{ empresa.fecha_fin }}</td>
+            <td>{{ empresa.conjunto }}</td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'empresa:editar_empresa' empresa.NIT %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'empresa:eliminar_empresa' empresa.NIT %}">Eliminar</a>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registro de empresas</h1>
+        {% endif %}
+    </tbody>
+
+</table>
+
+{% endblock %}

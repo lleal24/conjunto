@@ -1,0 +1,39 @@
+<!--Heredamos de la plantilla base -->
+{% extends 'base/baseadmin.html' %}
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Nombre torre</td>
+            <td>Numero de pisos</td>
+            <td>Conjunto</td>
+            <td>Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        <!--Si hay torres-->
+        {% for torre in object_list %}
+        <!--Relice un ciclo que genere una fila por cada registro-->
+        <tr>
+            <td>{{ torre.id }}</td>
+            <td>{{ torre.nombre_torre }}</td>
+            <td>{{ torre.numero_pisos }}</td>
+            <td>{{ torre.conjunto }}</td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'torre:editar_torre' torre.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'torre:eliminar_torre' torre.id %}">Eliminar</a>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registro de torres</h1>
+        {% endif %}
+    </tbody>
+
+</table>
+
+{% endblock %}

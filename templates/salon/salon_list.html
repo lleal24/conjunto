@@ -1,0 +1,39 @@
+<!--Heredamos de la plantilla base -->
+{% extends 'base/baseadmin.html' %}
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Nombre salon</td>
+            <td>Estado</td>
+            <td>Conjunto</td>
+            <td>Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        <!--Si hay salons-->
+        {% for salon in object_list %}
+        <!--Relice un ciclo que genere una fila por cada registro-->
+        <tr>
+            <td>{{ salon.id }}</td>
+            <td>{{ salon.nombre_salon }}</td>
+            <td>{{ salon.estado }}</td>
+            <td>{{ salon.conjunto }}</td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'salon:editar_salon' salon.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'salon:eliminar_salon' salon.id %}">Eliminar</a>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registro de salons</h1>
+        {% endif %}
+    </tbody>
+
+</table>
+
+{% endblock %}

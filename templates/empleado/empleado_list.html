@@ -1,0 +1,50 @@
+<!--Heredamos de la plantilla base -->
+{% extends 'base/baseadmin.html' %}
+{% block content %}
+<table class="table table-bordered">
+    <h1>Empleados</h1>
+    <thead>
+        <tr>
+            <td>Numero de identificacion</td>
+            <td>Nombres</td>
+            <td>Apellidos</td>
+            <td>Direccion</td>
+            <td>Telefono 1</td>
+            <td>Telefono 2</td>
+            <td>Celular</td>
+            <td>Estado</td>
+            <td>Empresa</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        <!--Si hay empleados-->
+        {% for empleado in object_list %}
+        <!--Relice un ciclo que genere una fila por cada registro-->
+        <tr>
+            <td>{{ empleado.numero_identificacion }}</td>
+            <td>{{ empleado.nombres }}</td>
+            <td>{{ empleado.apellidos }}</td>
+            <td>{{ empleado.direccion }}</td>
+            <td>{{ empleado.telefono1 }}</td>
+            <td>{{ empleado.telefono2 }}</td>
+            <td>{{ empleado.celular }}</td>
+            <td>{{ empleado.estado }}</td>
+            <td>{{ empleado.empresa }}</td>
+            {% if perms.personas.add_persona %}
+            <td>
+                <a class="btn btn-primary" href="{% url 'empleado:editar_empleado' empleado.numero_identificacion %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'empleado:eliminar_empleado' empleado.numero_identificacion %}">Eliminar</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registro de empleados</h1>
+        {% endif %}
+    </tbody>
+
+</table>
+
+{% endblock %}

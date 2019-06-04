@@ -7,10 +7,11 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.core.validators import RegexValidator
 
 piso_validator = RegexValidator("([0-9]){1}", "campo numerico de 1 digito")
+text_validator = RegexValidator("([A-Z])\w+", "campo solo admite letras")
 
 # Create your models here.
 class Torre(models.Model):
-    nombre_torre = models.CharField(max_length=50)
+    nombre_torre = models.TextField(max_length=50, validators=[text_validator])
     numero_pisos = models.TextField(max_length=1, validators=[piso_validator])
     conjunto = models.ForeignKey(Conjunto, null=True, blank=True, on_delete=models.CASCADE)
 

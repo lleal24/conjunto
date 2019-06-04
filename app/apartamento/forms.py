@@ -24,8 +24,11 @@ class ApartamentoForm(forms.ModelForm):
         }
         widgets = {
 			'numero_apartamento':forms.TextInput(attrs={'class':'form-control'}),
+            'fecha_inicio':forms.DateInput(attrs={'class':'form-control'}),
+            'fecha_fin':forms.DateInput(attrs={'class':'form-control'}),
             'torre': forms.Select(attrs={'class':'form-control'}),
             'propietario': forms.Select(attrs={'class':'form-control'}),
+
         
 
 			

@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import TemplateView
+from django.contrib.auth.views import LoginView, LogoutView
 
 app_name = 'apartamento'
 app_name = 'torre'
 app_name = 'conjunto'
 app_name = 'propietario'
 app_name = 'empresa'
+app_name = 'evento'
+app_name = 'noticia'
+app_name = 'usuario'
 
 
 urlpatterns = [
@@ -31,9 +36,14 @@ urlpatterns = [
     url(r'^propietario/', include(('app.propietario.urls', 'propietario'), namespace='propietario')),
     url(r'^salon/', include(('app.salon.urls', 'salon'), namespace='salon')),
     url(r'^empresa/', include(('app.empresa.urls', 'empresa'), namespace='empresa')),
-    #url(r'^noticia/', include(('app.noticia.urls', 'noticia'), namespace='noticia')),
-    #url(r'^evento/', include(('app.evento.urls', 'evento'), namespace='evento')),
-    #url(r'^cartelera/', include(('app.cartelera.urls', 'cartelera'), namespace='cartelera')),
+    url(r'^empleado/', include(('app.empleado.urls', 'empleado'), namespace='empleado')),
+    url(r'^evento/', include(('app.evento.urls', 'evento'), namespace='evento')),
+    url(r'^noticia/', include(('app.noticia.urls', 'noticia'), namespace='noticia')),
+    url(r'^cartelera/', include(('app.cartelera.urls', 'cartelera'), namespace='cartelera')),
+    url(r'^usuario/', include(('app.usuario.urls', 'usuario'), namespace='usuario')),
+    url(r'^home/', TemplateView.as_view(template_name='home.html'),name='home'),
+    url('', LoginView.as_view(template_name='index.html'),name='login'),
+    url(r'^logout', LogoutView.as_view, name='logout'),
     
     
     #url(r'^mascota/', include(('app.mascota.urls', 'mascota'), namespace='mascota')),  

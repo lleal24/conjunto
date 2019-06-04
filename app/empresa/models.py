@@ -15,7 +15,7 @@ cel_validator = RegexValidator("([0-9]){10}", "campo numerico de 10 digitos")
 class Empresa(models.Model):
     ESTADO = (
         ('A', 'Activa'),
-        ('N', 'No activa'),
+        ('I', 'Inactiva'),
     )
 
     NIT = models.TextField(validators=[NIT_validator], primary_key=True)

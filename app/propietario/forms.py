@@ -14,6 +14,7 @@ class PropietarioForm(forms.ModelForm):
             'telefono2',
             'celular',
             'correo',
+            'usuario',
         ]
 
         labels = {
@@ -24,6 +25,7 @@ class PropietarioForm(forms.ModelForm):
             'telefono2': 'Telefono 2',
             'celular': 'Celular',
             'correo': 'Correo electronico',
+            'usuario': 'Usuario',
         }
         widgets = {
             'numero_identificacion':forms.TextInput(attrs={'class':'form-control'}),
@@ -33,5 +35,6 @@ class PropietarioForm(forms.ModelForm):
             'telefono2': forms.TextInput(attrs={'class':'form-control'}),
             'celular': forms.TextInput(attrs={'class':'form-control'}),
             'correo': forms.TextInput(attrs={'class':'form-control'}),
+            'usuario': forms.Select(attrs={'class':'form-control'}),
 						
 		}

@@ -1,0 +1,44 @@
+<!--Heredamos de la plantilla base -->
+{% extends 'base/baseadmin.html' %}
+{% block content %}
+<h1>Listado de eventos</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Titulo</td>
+            <td>Contenido</td>
+            <td>Fecha inicio</td>
+            <td>Fecha fin</td>
+            <td>Conjunto</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        <!--Si hay eventos-->
+        {% for evento in object_list %}
+        <!--Relice un ciclo que genere una fila por cada registro-->
+        <tr>
+            <td>{{ evento.id }}</td>
+            <td>{{ evento.titulo }}</td>
+            <td>{{ evento.contenido }}</td>
+            <td>{{ evento.fecha_inicio }}</td>
+            <td>{{ evento.fecha_fin }}</td>
+            <td>{{ evento.conjunto }}</td>
+            {% if perms.personas.add_persona %}
+            <td>
+                <a class="btn btn-primary" href="{% url 'evento:editar_evento' evento.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'evento:eliminar_evento' evento.id %}">Eliminar</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registro de eventos</h1>
+        {% endif %}
+    </tbody>
+
+</table>
+
+{% endblock %}

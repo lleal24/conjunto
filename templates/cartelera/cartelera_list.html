@@ -1,0 +1,44 @@
+<!--Heredamos de la plantilla base -->
+{% extends 'base/baseadmin.html' %}
+{% block content %}
+<h1>Cartelera</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Titulo</td>
+            <td>Contenido</td>
+            <td>Fecha inicio</td>
+            <td>Fecha fin</td>
+            <td>Conjunto</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        <!--Si hay carteleras-->
+        {% for cartelera in object_list %}
+        <!--Relice un ciclo que genere una fila por cada registro-->
+        <tr>
+            <td>{{ cartelera.id }}</td>
+            <td>{{ cartelera.titulo }}</td>
+            <td>{{ cartelera.contenido }}</td>
+            <td>{{ cartelera.fecha_inicio }}</td>
+            <td>{{ cartelera.fecha_fin }}</td>
+            <td>{{ cartelera.conjunto }}</td>
+            {% if perms.personas.add_persona %}
+            <td>
+                <a class="btn btn-primary" href="{% url 'cartelera:editar_cartelera' cartelera.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'cartelera:eliminar_cartelera' cartelera.id %}">Eliminar</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registro de carteleras</h1>
+        {% endif %}
+    </tbody>
+
+</table>
+
+{% endblock %}

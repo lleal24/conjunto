@@ -1,0 +1,10 @@
+<!--Heredamos de la plantilla base -->
+{% extends 'base/baseadmin.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %} <!--TOKEN DE seguridad IMPORTANTE SIEMPRE incluirlo-->
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}

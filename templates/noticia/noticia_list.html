@@ -1,0 +1,44 @@
+<!--Heredamos de la plantilla base -->
+{% extends 'base/baseadmin.html' %}
+{% block content %}
+<h1>Listado de noticias</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Titulo</td>
+            <td>Contenido</td>
+            <td>Fecha inicio</td>
+            <td>Fecha fin</td>
+            <td>Conjunto</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        <!--Si hay noticias-->
+        {% for noticia in object_list %}
+        <!--Relice un ciclo que genere una fila por cada registro-->
+        <tr>
+            <td>{{ noticia.id }}</td>
+            <td>{{ noticia.titulo }}</td>
+            <td>{{ noticia.contenido }}</td>
+            <td>{{ noticia.fecha_inicio }}</td>
+            <td>{{ noticia.fecha_fin }}</td>
+            <td>{{ noticia.conjunto }}</td>
+            {% if perms.personas.add_persona %}
+            <td>
+                <a class="btn btn-primary" href="{% url 'noticia:editar_noticia' noticia.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'noticia:eliminar_noticia' noticia.id %}">Eliminar</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+
+        {% else %}
+        <h1>No hay registro de noticias</h1>
+        {% endif %}
+    </tbody>
+
+</table>
+
+{% endblock %}

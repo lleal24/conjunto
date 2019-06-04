@@ -2,6 +2,7 @@
 {% extends 'base/baseadmin.html' %}
 {% block content %}
 <table class="table table-bordered">
+    <h1>Empresas afiliadas</h1>
     <thead>
         <tr>
             <td>NIT</td>
@@ -30,10 +31,12 @@
             <td>{{ empresa.fecha_inicio }}</td>
             <td>{{ empresa.fecha_fin }}</td>
             <td>{{ empresa.conjunto }}</td>
+            {% if perms.personas.add_persona %}
             <td>
                 <a class="btn btn-primary" href="{% url 'empresa:editar_empresa' empresa.NIT %}">Editar</a>
                 <a class="btn btn-danger" href="{% url 'empresa:eliminar_empresa' empresa.NIT %}">Eliminar</a>
             </td>
+            {% endif %}
 
         </tr>
         {% endfor %}

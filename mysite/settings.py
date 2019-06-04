@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,6 +45,11 @@ INSTALLED_APPS = [
     'app.propietario',
     'app.salon',
     'app.empresa',
+    'app.empleado',
+    'app.evento',
+    'app.noticia',
+    'app.cartelera',
+    'app.usuario',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +135,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+

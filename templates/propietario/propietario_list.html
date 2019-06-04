@@ -2,6 +2,7 @@
 {% extends 'base/baseadmin.html' %}
 {% block content %}
 <table class="table table-bordered">
+    <h1>Lista de propietarios</h1>
     <thead>
         <tr>
             <td>Numero de identificacion</td>
@@ -11,6 +12,7 @@
             <td>Telefono 2</td>
             <td>Celular</td>
             <td>Correo</td>
+            <td>Usuario</td>
         </tr>
     </thead>
     <tbody>
@@ -26,11 +28,13 @@
             <td>{{ propietario.telefono2 }}</td>
             <td>{{ propietario.celular }}</td>
             <td>{{ propietario.correo }}</td>
+            <td>{{ propietario.usuario }}</td>
+            {% if perms.personas.add_persona %}
             <td>
                 <a class="btn btn-primary" href="{% url 'propietario:editar_propietario' propietario.numero_identificacion %}">Editar</a>
                 <a class="btn btn-danger" href="{% url 'propietario:eliminar_propietario' propietario.numero_identificacion %}">Eliminar</a>
             </td>
-
+            {% endif %}
         </tr>
         {% endfor %}
 

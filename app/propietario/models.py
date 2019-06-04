@@ -5,6 +5,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from datetime import datetime
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
 
 id_validator = RegexValidator("([0-9]){8,11}", "campo numerico de almenos 8 digitos max 11")
 tel_validator = RegexValidator("([0-9]){7}", "campo numerico de 7 digitos")
@@ -22,4 +23,8 @@ class Propietario(models.Model):
     telefono2 = models.TextField(max_length=7, validators=[tel_validator],blank=True)
     celular = models.TextField(max_length=10, validators=[cel_validator])
     correo = models.EmailField(max_length=45)
+    usuario = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{}'.format(self.nombres)
  

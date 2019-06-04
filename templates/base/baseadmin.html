@@ -41,68 +41,137 @@
                         <nav class="navbar navbar-default">
                             <div class="container-fluid">
                                 <div class="navbar-header">
-                                    <a class="navbar-brand" href="#">Home</a>
+                                    <a class="navbar-brand" href="{% url 'home' %}">Home</a>
                                 </div>
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav">
+                                        {% if perms.personas.add_persona %}
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                aria-expanded="false">Admin conjunto <span class="caret"></span></a>
+                                                aria-expanded="false">Conjunto <span class="caret"></span></a>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Torres</a></li>
-                                                <li><a href="#">Apartamentos</a></li>
+                                                <li><a href="{% url 'conjunto:crear_conjunto' %}">Crear conjunto</a>
+                                                </li>
+                                                <li><a href="{% url 'conjunto:listar_conjunto' %}">Listar conjuntos</a>
+                                                </li>
+                                                <li><a href="{% url 'torre:crear_torre' %}">Crear torre</a></li>
+                                                <li><a href="{% url 'torre:listar_torre' %}">Listar torres</a></li>
+                                                <li><a href="{% url 'apartamento:crear_apartamento' %}">Crear
+                                                        apartamento</a></li>
+                                                <li><a href="{% url 'apartamento:listar_apartamento' %}">Listar
+                                                        apartamentos</a></li>
+                                                <li><a href="{% url 'salon:crear_salon' %}">Crear salon comunal</a></li>
+                                                <li><a href="{% url 'salon:listar_salon' %}">Listar salones</a></li>
+                                            </ul>
+                                        </li>
+                                        {% endif %}
+                                        {% if perms.personas.add_persona %}
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                aria-expanded="false">Usuarios<span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="{% url 'usuario:registrar' %}">Crear usuario</a></li>
+                                                <li><a href="{% url 'usuario:listar_usuario' %}">Listar ususarios</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        {% endif %}
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                                aria-expanded="false">Propietarios <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                {% if perms.personas.add_persona %}
+                                                <li><a href="{% url 'propietario:crear_propietario' %}">Crear
+                                                        propietario</a></li>
+                                                {% endif %}
+                                                <li><a href="{% url 'propietario:listar_propietario' %}">Listar</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                aria-expanded="false">Admin usuarios<span class="caret"></span></a>
+                                                aria-expanded="false">Empresas Afiliadas<span class="caret"></span></a>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Crear usuario</a></li>
-                                                <li><a href="#">Listar
-                                                        ususarios</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                aria-expanded="false">Admin noticias <span class="caret"></span></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Nueva noticia</a></li>
-                                                <li><a href="#">Listar noticias</a></li>
-                                            </ul>
+                                                {% if perms.personas.add_persona %}
+                                                <li><a href="{% url 'empresa:crear_empresa' %}">Crear empresa</a></li>
+                                                {% endif %}
+                                                <li><a href="{% url 'empresa:listar_empresa' %}">Listar empresas</a>
+                                                {% if perms.personas.add_persona %}
+                                                <li><a href="{% url 'empleado:crear_empleado' %}">Crear empleado</a></li>
+                                                {% endif %}
+                                                <li><a href="{% url 'empleado:listar_empleado' %}">Listar empleados</a>
                                         </li>
                                     </ul>
-                                    
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                            aria-expanded="false">Eventos<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% if perms.personas.add_persona %}
+                                            <li><a href="{% url 'evento:crear_evento' %}">Crear evento</a></li>
+                                            {% endif %}
+                                            <li><a href="{% url 'evento:listar_evento' %}">Listar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                            aria-expanded="false">Noticias<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% if perms.personas.add_persona %}
+                                            <li><a href="{% url 'noticia:crear_noticia' %}">Crear noticia</a></li>
+                                            {% endif %}
+                                            <li><a href="{% url 'noticia:listar_noticia' %}">Listar noticias</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                            aria-expanded="false">Cartelera<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            {% if perms.personas.add_persona %}
+                                            <li><a href="{% url 'cartelera:crear_cartelera' %}">Crear</a></li>
+                                            {% endif %}
+                                            <li><a href="{% url 'cartelera:listar_cartelera' %}">Listar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+
+                                    </ul>
+
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown"><a href="http://codigofacilito.com"
                                                 onclick="pageTracker._link(this.href); return false;">
-                                                </a>
+                                            </a>
                                         </li>
                                         <li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                                 aria-expanded="false">Opciones<span class="caret"></span></a>
                                             <ul class="dropdown-menu" role="menu">
-                                                <li><a href="{#}">Salir</a></li>
-                              </ul>
-                            </li>
-                         </ul>
-                        </div>
+                                                <li><a href="{% url 'logout' %}">Salir</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
                     </div>
-                </nav>
+                </div>
             </div>
-              </div>
-          </div>
-      </div>
+        </div>
 
 
-   {% endblock %}
+        {% endblock %}
 
 
-    {% block content %}
-    <h5>Bloque de contenido</h5>
-    {% endblock %}
-</div>
+        {% block content %}
+        <h5>Bloque de contenido</h5>
+        {% endblock %}
+    </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
- <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     {% block footer %}
@@ -112,4 +181,5 @@
     {% block extrajs %}
     {% endblock %}
 </body>
+
 </html>

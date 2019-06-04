@@ -37,6 +37,8 @@ class EmpresaForm(forms.ModelForm):
             'celular': forms.TextInput(attrs={'class':'form-control'}),
             'estado': forms.Select(attrs={'class':'form-control'}),
             'direccion':forms.TextInput(attrs={'class':'form-control'}),
+            'fecha_inicio':forms.DateInput(attrs={'class':'form-control'}),
+            'fecha_fin':forms.DateInput(attrs={'class':'form-control'}),
             'conjunto': forms.Select(attrs={'class':'form-control'}),
 						
 		}
